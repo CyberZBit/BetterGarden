@@ -1,16 +1,15 @@
 
-import {nameInList, pogObject, replaceSpaces} from '../utils' 
-//list.push({ [name]: { note: "shitter" } });
+import {nameInList, pogObject, replaceSpaces, replaceUnderscores} from '../utils/utils' 
+
 
 
 register('step',(event)=>{
     let talked = false
-    //ChatLib.chat(Player.getContainer().toString())
     if(Player.getContainer()?.getClassName() == "ContainerChest"){
         if(!Player.getContainer()?.getStackInSlot(29)?.getName()?.includes("Accept Offer")) return
             Player.getContainer()?.getStackInSlot(29)?.getLore()?.forEach((lore, index) => {
                 if(lore.match(/x\d+/)){
-                    const visitorName = Player.getContainer()?.getStackInSlot(13)?.getName().removeFormatting().toLocaleLowerCase()
+                    const visitorName = replaceSpaces(Player.getContainer()?.getStackInSlot(13)?.getName().removeFormatting().toLocaleLowerCase())
                     const item_req = lore.removeFormatting()
                     
                     if(!nameInList(visitorName, pogObject.visitor)){
@@ -29,11 +28,11 @@ register('step',(event)=>{
 
 
 register('chat',(msg)=>{
-
+    
 
     const match = msg.match(/OFFER ACCEPTED with (\w+) \((\w+)\)/);
     if (match) {
-        const vistior = match[1].toLocaleLowerCase().removeFormatting();
+        const vistior = replaceSpaces(match[1].toLocaleLowerCase().removeFormatting());
         const visitorArray = pogObject.visitor;
         for (let i = 0; i < visitorArray.length; i++) {
           if (visitorArray[i].hasOwnProperty(vistior)) {
