@@ -4,7 +4,6 @@ import {nameInList, pogObject, replaceSpaces, replaceUnderscores} from '../utils
 
 
 register('step',(event)=>{
-    let talked = false
     if(Player.getContainer()?.getClassName() == "ContainerChest"){
         if(!Player.getContainer()?.getStackInSlot(29)?.getName()?.includes("Accept Offer")) return
             Player.getContainer()?.getStackInSlot(29)?.getLore()?.forEach((lore, index) => {
@@ -13,7 +12,7 @@ register('step',(event)=>{
                     const item_req = lore.removeFormatting()
                     
                     if(!nameInList(visitorName, pogObject.visitor)){
-                        pogObject.visitor.push({[visitorName]:{wants: item_req}})
+                        pogObject.visitor.push({[visitorName]:{wants: item_req, active: true}})
                         pogObject.save()
                         ChatLib.chat(`${visitorName} was added to the list`)
                     }
@@ -28,12 +27,11 @@ register('step',(event)=>{
 
 
 register('chat',(msg)=>{
-    
-
-    const match = msg.match(/OFFER ACCEPTED with (\w+) \((\w+)\)/);
-    if (match) {
-        replaceSpaces(match[1])
-        const vistior = replaceSpaces(match[1].toLocaleLowerCase().removeFormatting());
+    const trade_complete = msg.match(/OFFER ACCEPTED with (\w+) \((\w+)\)/);
+    const imNotDoingThatShit = msg.match(/^\[(\w+)\]\s+([^:]+):\s+(.*)$/);
+    if (trade_complete) {
+        replaceSpaces(trade_complete[1])
+        const vistior = replaceSpaces(trade_complete[1].toLocaleLowerCase().removeFormatting());
         const visitorArray = pogObject.visitor;
         for (let i = 0; i < visitorArray.length; i++) {
           if (visitorArray[i].hasOwnProperty(vistior)) {
@@ -45,4 +43,21 @@ register('chat',(msg)=>{
         pogObject.save()
         ChatLib.chat(`Removed ${vistior} from the list`);
     }
+
+    if(imNotDoingThatShit){
+        ChatLib.chat(imNotDoingThatShit[2])
+        replaceSpaces(imNotDoingThatShit[2])
+        const vistior = (imNotDoingThatShit[2]).toLocaleLowerCase().removeFormatting();
+        vistior.removeFormatting()
+        const visitorArray = pogObject.visitor;
+        for (let i = 0; i < visitorArray.length; i++) {
+          if (visitorArray[i].hasOwnProperty(vistior)) {
+            visitorArray.splice(i, 1);
+            break;
+          }
+        }
+        pogObject.save()
+        ChatLib.chat(`Removed ${vistior} from the list`);
+    }
 }).setChatCriteria("${msg}");
+
