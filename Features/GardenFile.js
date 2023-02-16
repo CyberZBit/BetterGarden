@@ -32,6 +32,7 @@ register('chat',(msg)=>{
 
     const match = msg.match(/OFFER ACCEPTED with (\w+) \((\w+)\)/);
     if (match) {
+        replaceSpaces(match[1])
         const vistior = replaceSpaces(match[1].toLocaleLowerCase().removeFormatting());
         const visitorArray = pogObject.visitor;
         for (let i = 0; i < visitorArray.length; i++) {
@@ -45,4 +46,3 @@ register('chat',(msg)=>{
         ChatLib.chat(`Removed ${vistior} from the list`);
     }
 }).setChatCriteria("${msg}");
-//item: undefined and slot: 3 (9)item:   and slot: 28 (6)

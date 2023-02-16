@@ -14,8 +14,7 @@ let mainGUIWidth = 200
 function renderText(){
   
   let textY = mainGUIy +10
-  let textX = mainGUIx + 2
-  Renderer.drawString("Visitors", mainGUIx+80, mainGUIy*1.1)
+  let textX = mainGUIx + 5
   pogObject.visitor.forEach(textelement => {
     textY+= 20
     
@@ -28,16 +27,18 @@ function renderText(){
 
 function mainGUI() {
   const baseHeight = 50; 
-  const extraHeightPerVisitor = 10; 
+  const extraHeightPerVisitor = 15; 
   const visitorCount = pogObject.visitor.length;
-  const extraHeight = Math.min(visitorCount, 5) * extraHeightPerVisitor; 
+  const extraHeight = Math.min(visitorCount, 150) * extraHeightPerVisitor; 
   
   Renderer.drawRect(Renderer.color(55, 55, 55), mainGUIx, mainGUIy, mainGUIWidth, baseHeight + extraHeight)
 }
 
 register('renderOverlay',()=>{
-  mainGUI()
-  renderText()  
+
+    mainGUI()
+    renderText() 
+
 }).setPriority(Priority.HIGHEST)
 
 

@@ -1,11 +1,32 @@
 {
     "visitor": [
         {
-            "lumina": {
-                "wants": " Enchanted Pumpkin x554"
+            "farmhand": {
+                "wants": " Enchanted Hay Bale x43"
+            }
+        },
+        {
+            "jacob": {
+                "wants": " Enchanted Hay Bale x33"
+            }
+        },
+        {
+            "gold_forger": {
+                "wants": " Golden Carrot x1,028"
+            }
+        },
+        {
+            "trevor": {
+                "wants": " Enchanted Cactus x2"
+            }
+        },
+        {
+            "felix": {
+                "wants": " Enchanted Cactus x3"
             }
         }
     ],
     "guiCordX": 486,
-    "guiCordY": 291
+    "guiCordY": 291,
+    "string": " Next Visitor: 8m 44s"
 }
