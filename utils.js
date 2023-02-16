@@ -26,6 +26,32 @@ export function removeVisitor(name, list) {
   }
 }
 
+function replaceSpaces(str) {
+  if (str.indexOf(' ') !== -1) {
+  return str.replace(/ /g, '_');
+  } else {
+  return str;
+  }
+  }
+
+  
+
+  export function replaceSpaces(str) {
+    if (str.indexOf(' ') !== -1) {
+      return str.replace(/ /g, '_');
+    } else {
+      return str;
+    }
+  }
+
+  export function replaceUnderscores(str) {
+    if (str.indexOf('_') !== -1) {
+      return str.replace(/_/g, ' ');
+    } else {
+      return str;
+    }
+  }
+
 export function getJavaColor(color){
     return new Color(color.getRed()/255, color.getGreen()/255, color.getBlue()/255, (color.getAlpha()/255) ? color.getAlpha()/255 : 0);
 }

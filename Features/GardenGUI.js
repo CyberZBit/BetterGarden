@@ -1,54 +1,45 @@
 /// <reference types="../../CTAutocomplete" />
-import * as Elementa from "Elementa";
 import { pogObject, getJavaColor } from "../utils";
-const Color = Java.type("java.awt.Color");
-
-let mainString = ""
 
 
-win = new Elementa.Window();
+const gui = new Gui()
+let mainGUIx = 60
+let mainGUIy = 70
+let mainGUIWidth = 170
 
 
 
-const Visitors = new Elementa.UIText("Vistiors")
-.setX((50).pixels())
-.setY((10).pixels());   
 
-const textMain = new Elementa.UIText("Vistiors")
-.setX((10).pixels())
-.setY((20).pixels());   
 
-const myElement = new Elementa.UIRoundedRectangle(3)
-.setX((pogObject.guiCordX).pixels())
-.setY((pogObject.guiCordY).pixels())
-.setWidth((140).pixels()) //x
-.setHeight((40).pixels()) //y
-.setColor(new Elementa.ConstantColorConstraint(getJavaColor(new Color(0, 0, 0, 0.7))))
-.addChild(textMain)
-.addChild(Visitors)
-win.addChild(myElement);
-
-function text(str){
-    textMain.setText(str)
-
+function renderText(){
+  
+  let textY = mainGUIy +10
+  let textX = mainGUIx + 2
+  Renderer.drawString("Visitors", mainGUIx+50, mainGUIy*1.1)
+  pogObject.visitor.forEach(textelement => {
+    textY+= 20
+    
+    const visitorName = Object.keys(textelement)[0];
+    const visitorWants = textelement[visitorName].wants;
+    Renderer.drawString(`${visitorName}: ${visitorWants}`, textX, textY);
+  });
 }
 
 
-register('step',()=>{
-    pogObject.visitor.forEach(visitorObj => {
-        const visitorName = Object.keys(visitorObj)[0];
-        const visitorWants = visitorObj[visitorName].wants;
-        if(!mainString.includes(`${visitorName} wants ${visitorWants}`)){
-            mainString+= `${visitorName} wants ${visitorWants} \n`
-        }
-        text(mainString)
-      });
-}).setDelay(1)
-
-
+function mainGUI() {
+  const baseHeight = 50; 
+  const extraHeightPerVisitor = 10; 
+  
+  const visitorCount = pogObject.visitor.length;
+  const extraHeight = Math.min(visitorCount, 5) * extraHeightPerVisitor; 
+  
+  Renderer.drawRect(Renderer.color(55, 55, 55), mainGUIx, mainGUIy, mainGUIWidth, baseHeight + extraHeight);
+}
 
 register('renderOverlay',()=>{
-    win.draw();
+  mainGUI()
+  renderText()  
+}).setPriority(Priority.HIGHEST)
 
-})
+
 

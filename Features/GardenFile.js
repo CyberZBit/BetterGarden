@@ -1,9 +1,10 @@
 
-import {nameInList, pogObject} from '../utils' 
+import {nameInList, pogObject, replaceSpaces} from '../utils' 
 //list.push({ [name]: { note: "shitter" } });
 
 
 register('step',(event)=>{
+    let talked = false
     //ChatLib.chat(Player.getContainer().toString())
     if(Player.getContainer()?.getClassName() == "ContainerChest"){
         if(!Player.getContainer()?.getStackInSlot(29)?.getName()?.includes("Accept Offer")) return
@@ -28,11 +29,11 @@ register('step',(event)=>{
 
 
 register('chat',(msg)=>{
+
+
     const match = msg.match(/OFFER ACCEPTED with (\w+) \((\w+)\)/);
     if (match) {
         const vistior = match[1].toLocaleLowerCase().removeFormatting();
-        
-
         const visitorArray = pogObject.visitor;
         for (let i = 0; i < visitorArray.length; i++) {
           if (visitorArray[i].hasOwnProperty(vistior)) {
