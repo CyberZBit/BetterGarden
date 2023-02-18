@@ -12,8 +12,8 @@ export function nameInList(name, visitorList) {
 
 export const pogObject = new PogObject("BetterGarden", {
     visitor:[],
-    guiCordX: 486,
-    guiCordY: 291,
+    mainGUIx: 160,
+    mainGUIy: 170,
     string:"",
     debugString:""
 }, "Garden.json");

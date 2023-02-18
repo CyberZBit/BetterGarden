@@ -1,7 +1,4 @@
 import { pogObject } from "../utils/utils";
-
-
-
 let VisitorString = ""
 
 register('tick',()=>{
@@ -31,5 +28,10 @@ register('step',()=>{
 }).setDelay(0.5)
 
 register('renderOverlay',()=>{
-    Renderer.drawString(VisitorString, 140, 80)
+    Renderer.drawString(VisitorString, pogObject.mainGUIx + 75, pogObject.mainGUIy+10)
 })
+
+/*
+    mainGUIx: 160,
+    mainGUIy: 170,
+*/
