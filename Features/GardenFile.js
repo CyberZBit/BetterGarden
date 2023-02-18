@@ -18,7 +18,6 @@ register('step', (event) => {
                 if (match) {
                     const enchantedItem = item_req.replace(/ x\d+$/, '').trim();
                     const count = Number(match[1]);
-                    ChatLib.chat(`${enchantedItem}:${count}`);
                     getPrice(enchantedItem).then(item => {
                       pogObject.visitor.push({
                         [visitorName]: {

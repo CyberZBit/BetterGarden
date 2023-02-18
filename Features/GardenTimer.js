@@ -31,5 +31,5 @@ register('step',()=>{
 }).setDelay(0.5)
 
 register('renderOverlay',()=>{
-    Renderer.drawString(VisitorString, 110, 80)
+    Renderer.drawString(VisitorString, 140, 80)
 })

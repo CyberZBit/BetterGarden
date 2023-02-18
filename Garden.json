@@ -1,6 +1,14 @@
 {
-    "visitor": [],
+    "visitor": [
+        {
+            "odawa": {
+                "wants": " Enchanted Sugar x356",
+                "price": "32.6m"
+            }
+        }
+    ],
     "guiCordX": 486,
     "guiCordY": 291,
-    "string": " Next Visitor: 5m 35s"
+    "string": " Next Visitor: 10m 7s",
+    "debugString": ""
 }
