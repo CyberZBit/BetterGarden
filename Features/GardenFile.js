@@ -13,12 +13,11 @@ register('step', (event) => {
               if (!nameInList(visitorName, pogObject.visitor)) {
                 const regex = /\bEnchanted\s\w+\s*\w*\s*x(\d+)\b/;
                 const match = item_req.trim().match(regex);
-            
-
                 if (match) {
                     const enchantedItem = item_req.replace(/ x\d+$/, '').trim();
                     const count = Number(match[1]);
                     getPrice(enchantedItem).then(item => {
+                      
                       pogObject.visitor.push({
                         [visitorName]: {
                           wants: item_req,

@@ -1,5 +1,5 @@
 import { pogObject } from "../utils/utils";
-let move = new Gui();
+export let move = new Gui();
 register("dragged", (dx, dy, x, y) => {
 	if (move.isOpen()) {
 		pogObject.mainGUIx = x

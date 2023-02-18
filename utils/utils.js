@@ -15,7 +15,8 @@ export const pogObject = new PogObject("BetterGarden", {
     mainGUIx: 160,
     mainGUIy: 170,
     string:"",
-    debugString:""
+    debugString:"",
+    inGarden: true
 }, "Garden.json");
 
 

@@ -1,4 +1,5 @@
 import { pogObject } from "../utils/utils";
+import Settings from '../utils/config';
 let VisitorString = ""
 
 register('tick',()=>{
@@ -18,9 +19,11 @@ register('step',()=>{
     if (match) {
       const minutes = match[1] ? parseInt(match[1].replace('m', '')) : 0;
       const seconds = parseInt(match[2].replace('s', ''));
-      if (minutes == 0 && seconds < 2) {
-        Client.showTitle('&bNew Visitor',"",30, 10, 30)
-        World.playSound('random.burp',100, 0)
+      if(Settings.notificationV){
+        if (minutes == 0 && seconds < 2) {
+            Client.showTitle('&bNew Visitor',"",30, 10, 30)
+            World.playSound('random.burp',100, 0)
+          }
       }
     }
     pogObject.string = VisitorString.removeFormatting()
@@ -28,10 +31,12 @@ register('step',()=>{
 }).setDelay(0.5)
 
 register('renderOverlay',()=>{
-    Renderer.drawString(VisitorString, pogObject.mainGUIx + 75, pogObject.mainGUIy+10)
+    if(Settings.onlyInGarden){
+        if(pogObject.inGarden){
+            Renderer.drawString(pogObject.string, pogObject.mainGUIx + 75, pogObject.mainGUIy+10)
+        }
+    }else if(Settings.onlyInGarden == false){
+        Renderer.drawString(pogObject.string, pogObject.mainGUIx + 75, pogObject.mainGUIy+10)
+    }
+    
 })
-
-/*
-    mainGUIx: 160,
-    mainGUIy: 170,
-*/

@@ -1,9 +1,10 @@
 {
     "visitor": [],
-    "mainGUIx": 188.3333282470703,
-    "mainGUIy": 26.666656494140625,
-    "string": " Next Visitor: 3m 48s",
+    "mainGUIx": 58.66666793823242,
+    "mainGUIy": 53.333343505859375,
+    "string": " Next Visitor: 13m 23s",
     "debugString": "",
+    "inGarden": false,
     "guiCordX": 486,
     "guiCordY": 291
 }

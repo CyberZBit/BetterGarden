@@ -1,4 +1,5 @@
 /// <reference types="../../CTAutocomplete" />
+import Settings from '../utils/config';
 import {nameInList, pogObject, replaceSpaces, replaceUnderscores} from "../utils/utils";
 
 let mainGUIx = 160
@@ -34,10 +35,21 @@ function mainGUI() {
   Renderer.drawRect(Renderer.color(55, 55, 55), pogObject.mainGUIx, pogObject.mainGUIy, mainGUIWidth, baseHeight + extraHeight)
 }
 
+
+
 register('renderOverlay',()=>{
-  mainGUI()
-  renderText() 
-  noVis()
+
+  if(Settings.onlyInGarden){
+    if(pogObject.inGarden){
+      mainGUI()
+      renderText() 
+      noVis()
+    }
+  }else if(Settings.onlyInGarden == false){
+    mainGUI()
+    renderText() 
+    noVis()
+  }
 }).setPriority(Priority.HIGHEST)
 
 
