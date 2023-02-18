@@ -1,6 +1,6 @@
 # BetterGarden
 A Chattriggers module that provides some QOL features for the garden in Hypixel Skyblock
-  - Shows active vistiors on your island and what items they want with a gui
+  - Shows the active vistiors on your island and what items they want in a GUI
   - Shows when the next visitor will come to your island
   - A text popup when a visitor appears on your island
   - Shows how much the trade costs (bazzar prices) 
