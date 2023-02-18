@@ -1,27 +1,41 @@
 
-import {nameInList, pogObject, replaceSpaces, replaceUnderscores} from '../utils/utils' 
+import {nameInList, pogObject, replaceSpaces, replaceUnderscores, prefix, formatNumber} from '../utils/utils' 
+import { getPrice } from './GardenPrice'
 
 
+register('step', (event) => {
+  if (Player.getContainer()?.getClassName() == "ContainerChest") {
+      if (!Player.getContainer()?.getStackInSlot(29)?.getName()?.includes("Accept Offer")) return
+      Player.getContainer()?.getStackInSlot(29)?.getLore()?.forEach((lore, index) => {
+          if (lore.match(/x\d+/)) {
+              const visitorName = replaceSpaces(Player.getContainer()?.getStackInSlot(13)?.getName().removeFormatting().toLocaleLowerCase())
+              const item_req = lore.removeFormatting();
+              if (!nameInList(visitorName, pogObject.visitor)) {
+                const regex = /\bEnchanted\s\w+\s*\w*\s*x(\d+)\b/;
+                const match = item_req.trim().match(regex);
+            
 
-register('step',(event)=>{
-    if(Player.getContainer()?.getClassName() == "ContainerChest"){
-        if(!Player.getContainer()?.getStackInSlot(29)?.getName()?.includes("Accept Offer")) return
-            Player.getContainer()?.getStackInSlot(29)?.getLore()?.forEach((lore, index) => {
-                if(lore.match(/x\d+/)){
-                    const visitorName = replaceSpaces(Player.getContainer()?.getStackInSlot(13)?.getName().removeFormatting().toLocaleLowerCase())
-                    const item_req = lore.removeFormatting()
-                    
-                    if(!nameInList(visitorName, pogObject.visitor)){
-                        pogObject.visitor.push({[visitorName]:{wants: item_req, active: false}})
-                        pogObject.save()
-                    }
-                    
-                    
+                if (match) {
+                    const enchantedItem = item_req.replace(/ x\d+$/, '').trim();
+                    const count = Number(match[1]);
+                    ChatLib.chat(`${enchantedItem}:${count}`);
+                    getPrice(enchantedItem).then(item => {
+                      pogObject.visitor.push({
+                        [visitorName]: {
+                          wants: item_req,
+                          price: formatNumber(Math.round(item.price * count))
+                        }
+                      });
+                      pogObject.save();
+                    }).catch(error => console.error(error));
+                  
                 }
-            })
-    }
+              }
+          }
+      })
+  } //troll have fun 
 
-    
+
 }).setDelay(1)
 
 
@@ -58,3 +72,8 @@ register('chat',(msg)=>{
     }
 }).setChatCriteria("${msg}");
 
+register('command',()=>{
+  pogObject.visitor = []
+  ChatLib.chat(`${prefix} List Cleard!`)
+  pogObject.save()
+}).setName('gardenclearlist')

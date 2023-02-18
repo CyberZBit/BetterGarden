@@ -1,6 +1,8 @@
 import PogObject from "PogData";
 const Color = Java.type("java.awt.Color");
 
+
+export const prefix = "&e&lB&a&lGARDEN >&r&a"
 export function nameInList(name, visitorList) {
     return visitorList.some(item => {
       const itemKey = Object.keys(item)[0];
@@ -12,7 +14,8 @@ export const pogObject = new PogObject("BetterGarden", {
     visitor:[],
     guiCordX: 486,
     guiCordY: 291,
-    string:""
+    string:"",
+    debugString:""
 }, "Garden.json");
 
 
@@ -47,4 +50,15 @@ export function removeVisitor(name, list) {
 
 export function getJavaColor(color){
     return new Color(color.getRed()/255, color.getGreen()/255, color.getBlue()/255, (color.getAlpha()/255) ? color.getAlpha()/255 : 0);
+}
+
+
+export function formatNumber(num) {
+  const suffixes = ['', 'k', 'm', 'b', 't'];
+  const numAbs = Math.abs(num);
+  const index = Math.floor(Math.log10(numAbs) / 3);
+  const scaledNum = num / Math.pow(10, index * 3);
+  const formattedNum = scaledNum.toFixed(1);
+  const suffix = suffixes[index];
+  return `${formattedNum}${suffix}`;
 }

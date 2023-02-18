@@ -1,7 +1,7 @@
 import axios from "axios";
 let url = "https://sky.shiiyu.moe/api/v2/bazaar"
-function getprice(str){
-    const wantitem = str.toLowerCase();
+export function getPrice(str){
+    const wantitem = str?.toLowerCase();
     return axios.get(url, { headers: { "User-Agent": "Mozilla/5.0 (ChatTriggers)" }, parseBody: true })
     .then(res => {
       let item_data = null;
@@ -28,7 +28,7 @@ function getprice(str){
 }
 
 register('command',()=>{
-    getprice("Enchanted Cookie").then(item =>{
+    getPrice("Enchanted Potato").then(item =>{
         ChatLib.chat(item.price)
     })
 }).setName('getprice')

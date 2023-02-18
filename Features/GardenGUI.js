@@ -5,22 +5,18 @@ import {nameInList, pogObject, replaceSpaces, replaceUnderscores} from "../utils
 const gui = new Gui()
 let mainGUIx = 60
 let mainGUIy = 70
-let mainGUIWidth = 200
-
-
-
-
+let mainGUIWidth = 250
 
 function renderText(){
-  
   let textY = mainGUIy +10
   let textX = mainGUIx + 5
+
   pogObject.visitor.forEach(textelement => {
     textY+= 20
-    
     const visitorName = Object.keys(textelement)[0];
     const visitorWants = textelement[visitorName].wants;
-    Renderer.drawString(`${replaceUnderscores(visitorName)}: ${visitorWants}`, textX, textY);
+    const price_of_item_from_bz = textelement[visitorName].price
+    Renderer.drawString(`${replaceUnderscores(visitorName)}: ${visitorWants} ${price_of_item_from_bz}`, textX, textY);
   });
 }
 
@@ -35,10 +31,8 @@ function mainGUI() {
 }
 
 register('renderOverlay',()=>{
-
-    mainGUI()
-    renderText() 
-
+  mainGUI()
+  renderText() 
 }).setPriority(Priority.HIGHEST)
 
 
