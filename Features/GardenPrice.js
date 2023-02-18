@@ -26,9 +26,3 @@ export function getPrice(str){
       }
     });
 }
-
-register('command',()=>{
-    getPrice("Enchanted Potato").then(item =>{
-        ChatLib.chat(item.price)
-    })
-}).setName('getprice')
