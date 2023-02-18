@@ -32,16 +32,25 @@ class Settings {
     @ButtonProperty({
         name: "Move GUI",
         placeholder: "Move",
-        category: "GUI"
+        category: "General"
     })
     ButtonActionMoveGui() {
         ChatLib.command('gardenmovegui', true)
     }
 
+    @ButtonProperty({
+        name: "Clear visitor list",
+        placeholder: "Clear",
+        category: "General"
+    })
+    ButtonActionClearList() {
+        ChatLib.command('gardenclearlist', true)
+    }
+
     @SwitchProperty({
         name: "Garden Only",
         description: "Enables/Disables if the gui only works at the garden",
-        category: "GUI",
+        category: "General",
     })
     onlyInGarden = true;
 

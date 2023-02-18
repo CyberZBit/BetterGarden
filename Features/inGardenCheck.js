@@ -1,3 +1,5 @@
+
+/// <reference types="../../CTAutocomplete" />
 import { pogObject } from "../utils/utils";
 
 
@@ -5,7 +7,6 @@ register('step',()=>{
     let list = TabList.getNames()
       list.forEach((text) => {
         if(text.includes("Next Visitor")){
-            ChatLib.chat('set to true')
             pogObject.inGarden = true
             pogObject.save()
         }

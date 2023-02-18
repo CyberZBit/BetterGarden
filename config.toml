@@ -1,6 +1,7 @@
 
 [general]
 	vistior_notification = true
+	garden_only = true
 
 [gui]
 	garden_only = true
