@@ -6,6 +6,7 @@ let mainGUIx = 160
 let mainGUIy = 170
 let mainGUIWidth = 250
 
+
 function renderText(){
   let textY = pogObject.mainGUIy +10
   let textX = pogObject.mainGUIx + 5
@@ -28,11 +29,17 @@ function noVis(){
 
 
 function mainGUI() {
+  
+const colorString = Settings.myColor.toString()
+const rgbValues = colorString.match(/\d+/g)
+const red = parseInt(rgbValues[0])
+const green = parseInt(rgbValues[1])
+const blue = parseInt(rgbValues[2])
   const baseHeight = 50; 
   const extraHeightPerVisitor = 15; 
   const visitorCount = pogObject.visitor.length;
   const extraHeight = Math.min(visitorCount, 150) * extraHeightPerVisitor; 
-  Renderer.drawRect(Renderer.color(55, 55, 55), pogObject.mainGUIx, pogObject.mainGUIy, mainGUIWidth, baseHeight + extraHeight)
+  Renderer.drawRect(Renderer.color(red, green, blue), pogObject.mainGUIx, pogObject.mainGUIy, mainGUIWidth, baseHeight + extraHeight)
 }
 
 

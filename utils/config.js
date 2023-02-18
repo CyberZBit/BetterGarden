@@ -47,6 +47,13 @@ class Settings {
         ChatLib.command('gardenclearlist', true)
     }
 
+    @ColorProperty({
+        name: 'Color Picker',
+        description: 'Pick a color! (hopefully...)',
+        category: 'General',
+    })
+    myColor = Color.BLUE;
+
     @SwitchProperty({
         name: "Garden Only",
         description: "Enables/Disables if the gui only works at the garden",

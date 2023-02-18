@@ -1,7 +1,7 @@
 
 /// <reference types="../../CTAutocomplete" />
 import { pogObject } from "../utils/utils";
-
+import Settings from '../utils/config';
 
 register('step',()=>{
     let list = TabList.getNames()

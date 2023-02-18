@@ -1,7 +1,14 @@
 
 [general]
 	vistior_notification = true
+	color_picker = "255,148,136,109"
 	garden_only = true
+
+	[general.category]
+		color_picker = "255,170,191,32"
+
+[customization]
+	hud_colors = ""
 
 [gui]
 	garden_only = true
