@@ -11,7 +11,8 @@ register('step', (event) => {
               const visitorName = replaceSpaces(Player.getContainer()?.getStackInSlot(13)?.getName().removeFormatting().toLocaleLowerCase())
               const item_req = lore.removeFormatting();
               if (!nameInList(visitorName, pogObject.visitor)) {
-                const regex = /\bEnchanted\s\w+\s*\w*\s*x(\d+)\b/;
+                //const regex = /\bEnchanted\s\w+\s*\w*\s*x(\d+)\b/;
+                const regex = /\b(?:Enchanted|Polished|Compost)\s+\w+\s*\w*\s*(?:x\s*)?(\d+)\b/;
                 const match = item_req.trim().match(regex);
                 if (match) {
                     const enchantedItem = item_req.replace(/ x\d+$/, '').trim();
