@@ -31,7 +31,7 @@ register('step', (event) => {
               }
           }
       })
-  } //troll have fun 
+  }
 
 
 }).setDelay(1)
@@ -41,6 +41,7 @@ register('chat',(msg)=>{
     let newmsg = msg.removeFormatting()
     const trade_complete = msg.match(/OFFER ACCEPTED with (\w+) \((\w+)\)/);
     const imNotDoingThatShit = newmsg.match(/^\[(\w+)\]\s+([^:]+):\s+(.*)$/);
+
     if (trade_complete) {
         replaceSpaces(trade_complete[1])
         const vistior = replaceSpaces(trade_complete[1].toLocaleLowerCase().removeFormatting());
@@ -57,7 +58,7 @@ register('chat',(msg)=>{
 
     if(imNotDoingThatShit){
         replaceSpaces(imNotDoingThatShit[2])
-        const vistior = (imNotDoingThatShit[2]).toLocaleLowerCase().removeFormatting();
+        const vistior = replaceSpaces(imNotDoingThatShit[2]).toLocaleLowerCase().removeFormatting();
         vistior.removeFormatting()
         const visitorArray = pogObject.visitor;
         for (let i = 0; i < visitorArray.length; i++) {

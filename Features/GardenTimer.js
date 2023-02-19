@@ -3,12 +3,16 @@ import Settings from '../utils/config';
 let VisitorString = ""
 
 register('tick',()=>{
-    let list = TabList.getNames()
-    list.forEach((text, index) => {
-        if(text.includes("Next Visitor")){
-            VisitorString = text
+    if(Settings.onlyInGarden){
+        if(pogObject.inGarden){
+            let list = TabList.getNames()
+            list.forEach((text, index) => {
+                if(text.includes("Next Visitor")){
+                    VisitorString = text
+                }
+            });
         }
-    });
+    }
 })
 
 register('step',()=>{

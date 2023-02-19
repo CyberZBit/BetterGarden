@@ -4,8 +4,8 @@ import { pogObject } from "../utils/utils";
 import Settings from '../utils/config';
 
 register('step',()=>{
-    let list = TabList.getNames()
-      list.forEach((text) => {
+    let list = TabList?.getNames()
+      list?.forEach((text) => {
         if(text.includes("Next Visitor")){
             pogObject.inGarden = true
             pogObject.save()
