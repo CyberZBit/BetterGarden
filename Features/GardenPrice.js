@@ -24,5 +24,5 @@ export function getPrice(str){
       } else {
         throw new Error("Item not found: " + itemName);
       }
-    });
+    })
 }
