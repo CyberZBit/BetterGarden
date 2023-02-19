@@ -5,7 +5,7 @@ A Chattriggers module that provides some QOL features for the garden in Hypixel 
   - Shows when the next visitor will come to your island
   - A text popup when a visitor appears on your island
   - Shows how much the trade costs (bazzar prices) 
-  Command: /garden
+  - Command: /garden
 # Comming Soon
   - The ability to change the colors on the text
    
