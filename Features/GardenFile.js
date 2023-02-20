@@ -50,7 +50,7 @@ register('chat',(msg)=>{
         for (let i = 0; i < visitorArray.length; i++) {
           if (visitorArray[i].hasOwnProperty(vistior)) {
             visitorArray.splice(i, 1);
-            break;
+            i--;
           }
         }
         
@@ -65,7 +65,7 @@ register('chat',(msg)=>{
         for (let i = 0; i < visitorArray.length; i++) {
           if (visitorArray[i].hasOwnProperty(vistior)) {
             visitorArray.splice(i, 1);
-            break;
+            i--;
           }
         }
         pogObject.save()

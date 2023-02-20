@@ -2,9 +2,9 @@
     "visitor": [],
     "mainGUIx": 189,
     "mainGUIy": 25,
-    "string": " Next Visitor: 5m 40s",
+    "string": " Next Visitor: 41s",
     "debugString": "",
-    "inGarden": false,
+    "inGarden": true,
     "guiCordX": 486,
     "guiCordY": 291
 }
